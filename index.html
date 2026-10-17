@@ -1,173 +1,249 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creachita Studios - Launch Your Digital Edge</title>
-    <meta name="description" content="Digital solutions for tomorrow's challenges. Custom web, mobile, and software development for startups and small businesses.">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Custom styles to define the accent color */
-        :root {
-            --accent-color: #00e0b7; /* Neon Green/Cyan */
-        }
-        .text-accent { color: var(--accent-color); }
-        .bg-accent { background-color: var(--accent-color); }
-        .border-accent { border-color: var(--accent-color); }
-        .hover\:bg-accent\/80:hover { background-color: rgba(0, 224, 183, 0.8); }
-        .hero-bg {
-            background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); /* Abstract tech background */
-            background-size: cover;
-            background-position: center;
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Creachita — Studio Web</title>
+<meta name="description" content="Creachita merancang dan membangun situs perusahaan, toko online, dan aplikasi web untuk bisnis di Indonesia — dari ide sampai live di domain Anda.">
+<meta property="og:title" content="Creachita — Studio Web">
+<meta property="og:description" content="Situs perusahaan, toko online, dan aplikasi web. Dari ide sampai live di domain Anda.">
+<meta property="og:url" content="https://www.creachita.com">
+<meta name="theme-color" content="#121933">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23121933'/><path d='M22 11.5a7 7 0 1 0 0 9' fill='none' stroke='%23C9F0E4' stroke-width='4' stroke-linecap='round'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --fog:#ECEEF2;      /* page */
+  --paper:#FFFFFF;
+  --ink:#121933;      /* navy ink, text + dark sections */
+  --ink-2:#4A5170;    /* secondary text */
+  --line:#D5D9E3;
+  --cobalt:#2F45E8;   /* action */
+  --mint:#C9F0E4;     /* highlight on ink */
+  --gutter:clamp(16px,4vw,48px);
+  --max:1240px;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--fog);color:var(--ink);font:400 1.0625rem/1.6 Archivo,system-ui,sans-serif;font-stretch:100%}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--cobalt);outline-offset:3px;border-radius:4px}
+.dark :focus-visible{outline-color:var(--mint)}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:#fff;padding:8px 14px;border-radius:6px;z-index:9}
+.skip:focus{left:8px}
+
+/* type */
+.display{font-stretch:125%;font-weight:800;letter-spacing:-.035em;line-height:.95}
+h1.display{font-size:clamp(2.6rem,7.4vw,6.4rem)}
+h2.display{font-size:clamp(2.1rem,5vw,4rem)}
+.lede{font-size:clamp(1.125rem,1.6vw,1.3rem);color:var(--ink-2);max-width:34em}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:.5em;font:inherit;font-weight:600;text-decoration:none;padding:.8em 1.4em;border-radius:999px;border:1.5px solid var(--ink);transition:background .15s,color .15s}
+.btn-solid{background:var(--cobalt);border-color:var(--cobalt);color:#fff}
+.btn-solid:hover{background:var(--ink);border-color:var(--ink)}
+.btn-line:hover{background:var(--ink);color:#fff}
+
+/* header */
+header{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--fog) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid transparent}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font-stretch:125%;font-weight:800;font-size:1.35rem;letter-spacing:-.04em;text-decoration:none}
+.logo span{color:var(--cobalt)}
+nav{display:flex;align-items:center;gap:clamp(14px,2.5vw,32px);font-weight:500;font-size:.98rem}
+nav a{text-decoration:none}
+nav a:not(.btn):hover{color:var(--cobalt)}
+nav .btn{padding:.55em 1.1em}
+@media(max-width:640px){nav a:not(.btn){display:none}}
+
+/* hero */
+.hero{padding:clamp(48px,9vw,120px) 0 0;overflow:hidden}
+.hero h1{max-width:11ch}
+.hero .lede{margin-top:28px}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+.fan{position:relative;height:clamp(240px,42vw,560px);margin-top:clamp(48px,7vw,88px)}
+.frame{background:var(--paper);border-radius:12px;overflow:hidden;box-shadow:0 1px 0 var(--line),0 30px 60px -30px rgba(18,25,51,.45);border:1px solid var(--line)}
+.frame .bar{height:26px;display:flex;align-items:center;gap:6px;padding:0 12px;background:#F6F7F9;border-bottom:1px solid var(--line)}
+.frame .bar i{width:8px;height:8px;border-radius:50%;background:var(--line)}
+.frame .bar b{margin-left:10px;font-weight:500;font-size:.72rem;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.frame img{aspect-ratio:16/10;object-fit:cover;object-position:top;width:100%}
+.fan .frame{position:absolute;width:min(62%,760px);top:0;left:50%;transform-origin:50% 120%;animation:fan .9s cubic-bezier(.2,.8,.2,1) .15s backwards}
+.fan .f1{transform:translateX(-112%) rotate(-5deg) translateY(40px);z-index:1}
+.fan .f2{transform:translateX(-50%);z-index:2;animation-delay:0s}
+.fan .f3{transform:translateX(12%) rotate(5deg) translateY(40px);z-index:1}
+@keyframes fan{from{transform:translateX(-50%) translateY(60px);opacity:0}}
+@media(max-width:640px){.fan .frame{width:78%}.fan .f1{transform:translateX(-96%) rotate(-5deg) translateY(30px)}.fan .f3{transform:translateX(-4%) rotate(5deg) translateY(30px)}}
+
+/* work */
+.dark{background:var(--ink);color:#E9ECF6}
+.work{padding:clamp(72px,10vw,140px) 0;margin-top:-1px;position:relative;z-index:3}
+.sec-head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:20px 40px;margin-bottom:clamp(40px,6vw,72px)}
+.sec-head p{max-width:30em;color:var(--ink-2)}
+.dark .sec-head p{color:#A9B0CC}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(40px,5vw,72px) clamp(20px,3vw,40px)}
+.proj{grid-column:span 6;display:flex;flex-direction:column}
+.proj.wide{grid-column:span 7}
+.proj.narrow{grid-column:span 5}
+.proj .frame{border-color:#2A3256;box-shadow:none}
+.proj .frame .bar{background:#1B2347;border-color:#2A3256}
+.proj .frame .bar i{background:#3A4370}
+.proj .frame .bar b{color:#8E96B8}
+.proj a.shot{display:block;border-radius:12px;text-decoration:none}
+.proj a.shot:hover .frame{border-color:var(--mint)}
+.proj h3{font-stretch:112%;font-weight:700;font-size:1.45rem;letter-spacing:-.02em;margin-top:22px;display:flex;justify-content:space-between;gap:16px;align-items:baseline}
+.proj h3 a{font-stretch:100%;font-weight:500;font-size:.95rem;color:var(--mint);text-underline-offset:4px;white-space:nowrap}
+.proj p{color:#A9B0CC;margin-top:8px;max-width:38em}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;padding:0;list-style:none}
+.tags li{font-size:.8rem;padding:3px 10px;border-radius:999px;border:1px solid #333C63;color:#C3C9E0}
+@media(max-width:860px){.proj,.proj.wide,.proj.narrow{grid-column:1/-1}}
+
+/* services */
+.services{padding:clamp(72px,10vw,140px) 0}
+.svc{display:grid;grid-template-columns:repeat(2,1fr);border-top:1.5px solid var(--ink)}
+.svc div{padding:28px 0 32px;border-bottom:1px solid var(--line)}
+.svc div:nth-child(odd){padding-right:clamp(16px,4vw,56px)}
+.svc div:nth-child(even){padding-left:clamp(16px,4vw,56px);border-left:1px solid var(--line)}
+.svc h3{font-stretch:112%;font-weight:700;font-size:1.35rem;letter-spacing:-.015em}
+.svc p{color:var(--ink-2);margin-top:8px;max-width:30em}
+@media(max-width:700px){.svc{grid-template-columns:1fr}.svc div:nth-child(n){padding-left:0;padding-right:0;border-left:0}}
+
+/* process */
+.process{padding:0 0 clamp(72px,10vw,140px)}
+.steps{list-style:none;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(20px,3vw,40px);counter-reset:s}
+.steps li{counter-increment:s;padding-top:20px;border-top:1.5px solid var(--ink)}
+.steps li::before{content:counter(s);display:block;font-stretch:125%;font-weight:800;font-size:2.4rem;line-height:1;color:var(--cobalt);margin-bottom:18px}
+.steps h3{font-weight:700;font-size:1.15rem}
+.steps p{color:var(--ink-2);margin-top:6px;font-size:1rem}
+@media(max-width:860px){.steps{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.steps{grid-template-columns:1fr}}
+
+/* contact */
+.contact{padding:clamp(72px,10vw,140px) 0}
+.contact .lede{color:#A9B0CC;margin-top:24px}
+.mail{display:inline-block;margin-top:40px;font-stretch:112%;font-weight:700;font-size:clamp(1.5rem,4.4vw,3.4rem);letter-spacing:-.025em;color:var(--mint);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:.18em;word-break:break-word}
+.mail:hover{color:#fff}
+footer{border-top:1px solid #2A3256;padding:28px 0;font-size:.92rem;color:#8E96B8}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+footer a{text-decoration:none}
+footer a:hover{color:#fff}
+
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
 </head>
-<body class="bg-gray-900 text-white font-sans">
+<body>
+<a class="skip" href="#karya">Lewati ke karya</a>
 
-    <header class="absolute top-0 left-0 w-full p-6 z-10">
-        <div class="flex justify-between items-center max-w-6xl mx-auto">
-            <h1 class="text-2xl font-bold">
-                <span class="text-accent">Creachita</span> Studios
-            </h1>
-            <a href="#contact" class="hidden sm:inline-block text-sm font-semibold hover:text-accent transition duration-300">
-                Contact Us
-            </a>
-        </div>
-    </header>
+<header>
+  <div class="wrap">
+    <a class="logo" href="#" aria-label="Creachita, ke atas">creachita<span>.</span></a>
+    <nav aria-label="Utama">
+      <a href="#karya">Karya</a>
+      <a href="#layanan">Layanan</a>
+      <a href="#proses">Proses</a>
+      <a class="btn btn-solid" href="#kontak">Mulai proyek</a>
+    </nav>
+  </div>
+</header>
 
-    <section id="home" class="hero-bg py-32 md:py-48 text-center flex items-center min-h-screen">
-        <div class="max-w-4xl mx-auto px-6">
-            <p class="text-accent text-lg font-semibold mb-3 tracking-wider">Digital Solutions for Tomorrow's Challenges</p>
-            <h2 class="text-5xl md:text-7xl font-extrabold leading-tight mb-6">
-                Turning Vision into Value. <br class="hidden sm:block"> Launch Your <span class="text-accent">Digital Edge</span>.
-            </h2>
-            <p class="text-gray-300 text-xl md:text-2xl mb-10 max-w-2xl mx-auto">
-                We partner with startups and small businesses to build custom web, mobile, and software solutions that drive growth and delight users.
-            </p>
-            <a href="#contact" class="bg-accent text-gray-900 font-bold py-4 px-10 rounded-full text-lg uppercase tracking-wider hover:bg-accent/80 transition duration-300 shadow-xl inline-block" id="primary-cta">
-                Start Your Project Today
-            </a>
-            <div class="mt-8 text-sm text-gray-400">
-                Free Consultation · No Obligation
-            </div>
-        </div>
-    </section>
+<main>
+<section class="hero">
+  <div class="wrap">
+    <h1 class="display">Web yang rapi, cepat, dan dipakai orang.</h1>
+    <p class="lede">Creachita adalah studio web dari Indonesia. Kami merancang dan membangun situs perusahaan, toko online, dan aplikasi web — dari obrolan pertama sampai live di domain Anda.</p>
+    <div class="ctas">
+      <a class="btn btn-solid" href="#kontak">Ceritakan proyek Anda</a>
+      <a class="btn btn-line" href="#karya">Lihat karya</a>
+    </div>
+  </div>
+  <div class="fan" aria-hidden="true">
+    <div class="frame f1"><div class="bar"><i></i><i></i><i></i><b>sekolapedia.vercel.app</b></div><img src="shots/skolapedia.webp" alt="" width="1200" height="750"></div>
+    <div class="frame f2"><div class="bar"><i></i><i></i><i></i><b>citramedika.net</b></div><img src="shots/citramedika.webp" alt="" width="1200" height="750" fetchpriority="high"></div>
+    <div class="frame f3"><div class="bar"><i></i><i></i><i></i><b>hlly.vercel.app</b></div><img src="shots/hlly.webp" alt="" width="1200" height="750"></div>
+  </div>
+</section>
 
-    <section class="py-16 bg-gray-800">
-        <div class="max-w-6xl mx-auto px-6 text-center">
-            <h3 class="text-3xl font-bold mb-8">Trusted by Ambitious Founders</h3>
-            <div class="flex justify-center space-x-8 text-gray-400">
-                <p class="text-lg">✅ 15+ Successful Launches</p>
-                <p class="text-lg">✨ Customer-Focused Agile</p>
-                <p class="text-lg">🔒 Vercel & GitHub Ready</p>
-            </div>
-        </div>
-    </section>
+<section class="work dark" id="karya" aria-labelledby="karya-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="display" id="karya-h">Karya yang sudah live</h2>
+      <p>Semua di bawah ini bisa Anda buka sekarang. Klinik, toko pakaian, direktori sekolah, undangan digital, sampai alat kecil yang kami bangun untuk iseng tapi serius.</p>
+    </div>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
 
-    <section id="services" class="py-20 md:py-28">
-        <div class="max-w-6xl mx-auto px-6">
-            <p class="text-accent text-center uppercase font-semibold mb-2">Our Expertise</p>
-            <h3 class="text-4xl font-bold text-center mb-16">The Solutions We Deliver</h3>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
-                
-                <div class="bg-gray-800 p-8 rounded-lg shadow-2xl transition duration-300 hover:scale-[1.02] border-t-4 border-accent">
-                    <svg class="w-10 h-10 text-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
-                    <h4 class="text-2xl font-bold mb-3">Custom Web Development</h4>
-                    <p class="text-gray-400 mb-4">Modern, responsive websites and scalable web applications built with the latest frameworks.</p>
-                    <p class="text-accent font-semibold">Benefit: Scalable web presence that converts visitors into customers.</p>
-                </div>
+<section class="services" id="layanan" aria-labelledby="layanan-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="display" id="layanan-h">Yang kami kerjakan</h2>
+      <p>Tim kecil, satu proyek dipegang dari desain sampai rilis. Tidak ada oper-operan.</p>
+    </div>
+    <div class="svc">
+      <div><h3>Situs profil perusahaan</h3><p>Halaman yang menjelaskan bisnis Anda dengan jelas, tampil bagus di HP, dan mudah ditemukan di Google.</p></div>
+      <div><h3>Toko &amp; katalog online</h3><p>Katalog produk, keranjang, dan pesan lewat WhatsApp atau pembayaran online, sesuai cara Anda berjualan.</p></div>
+      <div><h3>Aplikasi web &amp; dashboard</h3><p>Direktori, sistem internal, peta data, dan alat kerja yang dibuat khusus untuk alur tim Anda.</p></div>
+      <div><h3>Desain UI/UX</h3><p>Riset singkat, alur pengguna, dan desain antarmuka yang siap dibangun — atau kami bangun sekalian.</p></div>
+    </div>
+  </div>
+</section>
 
-                <div class="bg-gray-800 p-8 rounded-lg shadow-2xl transition duration-300 hover:scale-[1.02] border-t-4 border-accent">
-                    <svg class="w-10 h-10 text-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
-                    <h4 class="text-2xl font-bold mb-3">Mobile App Creation</h4>
-                    <p class="text-gray-400 mb-4">Native and cross-platform mobile apps for iOS and Android, focusing on performance and UX.</p>
-                    <p class="text-accent font-semibold">Benefit: Connect with your audience everywhere with a seamless mobile experience.</p>
-                </div>
+<section class="process" id="proses" aria-labelledby="proses-h">
+  <div class="wrap">
+    <div class="sec-head"><h2 class="display" id="proses-h">Dari ide ke live</h2></div>
+    <ol class="steps">
+      <li><h3>Ngobrol</h3><p>Kita bahas tujuan, pengguna, dan anggaran. Anda dapat rencana dan estimasi tertulis.</p></li>
+      <li><h3>Rancang</h3><p>Struktur halaman dan desain visual. Anda review di link, bukan di file PDF.</p></li>
+      <li><h3>Bangun</h3><p>Dikerjakan bertahap dengan preview live yang bisa Anda buka kapan saja.</p></li>
+      <li><h3>Rilis &amp; rawat</h3><p>Live di domain Anda dengan SSL. Perubahan setelah rilis tetap kami bantu.</p></li>
+    </ol>
+  </div>
+</section>
 
-                <div class="bg-gray-800 p-8 rounded-lg shadow-2xl transition duration-300 hover:scale-[1.02] border-t-4 border-accent">
-                    <svg class="w-10 h-10 text-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v14L9 19zm0 0v-4"></path></svg>
-                    <h4 class="text-2xl font-bold mb-3">UI/UX Design</h4>
-                    <p class="text-gray-400 mb-4">User-centered design focused on intuitive interfaces that make products easy and engaging to use.</p>
-                    <p class="text-accent font-semibold">Benefit: Boost adoption and retention with a delightful, professional user experience.</p>
-                </div>
-                
-                <div class="bg-gray-800 p-8 rounded-lg shadow-2xl transition duration-300 hover:scale-[1.02] border-t-4 border-accent">
-                    <svg class="w-10 h-10 text-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                    <h4 class="text-2xl font-bold mb-3">Digital Strategy</h4>
-                    <p class="text-gray-400 mb-4">Expert consulting to guide your tech decisions from initial concept to successful market launch.</p>
-                    <p class="text-accent font-semibold">Benefit: Gain a clear technology roadmap, saving you time and avoiding costly mistakes.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<section class="contact dark" id="kontak" aria-labelledby="kontak-h">
+  <div class="wrap">
+    <h2 class="display" id="kontak-h">Punya proyek?<br>Ceritakan ke kami.</h2>
+    <p class="lede">Kirim gambaran singkat: bisnis Anda, apa yang ingin dibuat, dan kapan perlu live. Kami balas dalam satu hari kerja.</p>
+    <a class="mail" href="mailto:hello@creachita.com?subject=Proyek%20baru">hello@creachita.com</a>
+  </div>
+</section>
+</main>
 
-    <section id="process" class="py-20 md:py-28 bg-gray-900">
-        <div class="max-w-6xl mx-auto px-6">
-            <p class="text-accent text-center uppercase font-semibold mb-2">Our Workflow</p>
-            <h3 class="text-4xl font-bold text-center mb-16">A Clear Path to Launch</h3>
-            
-            <div class="relative flex flex-col md:flex-row justify-between items-start space-y-12 md:space-y-0 md:space-x-8">
-                
-                <div class="hidden md:block absolute top-10 left-0 right-0 h-1 bg-gray-700 mx-10"></div>
-                <div class="hidden md:block absolute top-10 left-0 right-0 h-1 bg-accent transform scale-x-0 origin-left transition-transform duration-1000" id="progress-line"></div>
-                
-                <div class="relative md:w-1/3 flex flex-col items-center text-center p-4">
-                    <div class="w-20 h-20 flex items-center justify-center rounded-full bg-accent text-gray-900 text-3xl font-extrabold mb-4 z-10 shadow-lg" id="step-1-circle">1</div>
-                    <h4 class="text-2xl font-bold mb-2">Discovery</h4>
-                    <p class="text-gray-400">Share your vision. We define the problem, understand your users, and map out the technological path.</p>
-                </div>
+<footer class="dark">
+  <div class="wrap">
+    <span>© <span id="y">2026</span> Creachita</span>
+    <span><a href="#karya">Karya</a> &nbsp; <a href="#layanan">Layanan</a> &nbsp; <a href="#kontak">Kontak</a></span>
+  </div>
+</footer>
 
-                <div class="relative md:w-1/3 flex flex-col items-center text-center p-4">
-                    <div class="w-20 h-20 flex items-center justify-center rounded-full bg-gray-800 border-2 border-gray-700 text-3xl font-extrabold mb-4 z-10" id="step-2-circle">2</div>
-                    <h4 class="text-2xl font-bold mb-2">Create & Build</h4>
-                    <p class="text-gray-400">Our team designs, develops, and rigorously tests a custom solution, keeping you involved with daily updates.</p>
-                </div>
-
-                <div class="relative md:w-1/3 flex flex-col items-center text-center p-4">
-                    <div class="w-20 h-20 flex items-center justify-center rounded-full bg-gray-800 border-2 border-gray-700 text-3xl font-extrabold mb-4 z-10" id="step-3-circle">3</div>
-                    <h4 class="text-2xl font-bold mb-2">Launch & Scale</h4>
-                    <p class="text-gray-400">We deploy your product to Vercel/cloud and provide the expert support and strategy needed for future growth.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="py-20 md:py-28 bg-gray-800">
-        <div class="max-w-3xl mx-auto px-6 text-center">
-            <h3 class="text-4xl font-bold mb-4">Ready to Create Your Next Digital Masterpiece?</h3>
-            <p class="text-gray-300 text-xl mb-12">
-                Start with a free, no-obligation consultation. Let's discuss your project and turn your idea into a successful product.
-            </p>
-
-            <form action="#" method="POST" class="bg-gray-900 p-8 rounded-xl shadow-2xl">
-                <div class="mb-6">
-                    <input type="text" name="name" placeholder="Your Name" class="w-full p-4 rounded bg-gray-700 border border-gray-600 focus:ring-accent focus:border-accent" required>
-                </div>
-                <div class="mb-6">
-                    <input type="email" name="email" placeholder="Your Email Address" class="w-full p-4 rounded bg-gray-700 border border-gray-600 focus:ring-accent focus:border-accent" required>
-                </div>
-                <div class="mb-6">
-                    <textarea name="project" rows="4" placeholder="Tell us about your project..." class="w-full p-4 rounded bg-gray-700 border border-gray-600 focus:ring-accent focus:border-accent" required></textarea>
-                </div>
-                <button type="submit" class="w-full bg-accent text-gray-900 font-bold py-4 rounded-lg text-lg uppercase tracking-wider hover:bg-accent/80 transition duration-300 shadow-lg">
-                    Get a Free Project Estimate
-                </button>
-            </form>
-            <p class="text-sm text-gray-500 mt-4">We respect your privacy. No spam, ever.</p>
-        </div>
-    </section>
-
-    <footer class="py-10 bg-gray-900 border-t border-gray-800">
-        <div class="max-w-6xl mx-auto px-6 text-center md:flex md:justify-between md:items-center">
-            <p class="mb-4 md:mb-0">&copy; 2025 <span class="text-accent">Creachita</span> Studios. All rights reserved.</p>
-            <div class="space-x-6 text-gray-400">
-                <a href="#services" class="hover:text-accent transition duration-300">Services</a>
-                <a href="#process" class="hover:text-accent transition duration-300">Process</a>
-                <a href="mailto:hello@creachitastudios.com" class="hover:text-accent transition duration-300">hello@creachitastudios.com</a>
-                <a href="https://github.com/yourusername/yourrepo" target="_blank" class="hover:text-accent transition duration-300">GitHub</a>
-            </div>
-        </div>
-    </footer>
+<script>
+const P=[
+ ["Citra Medika","Situs apotek dan praktik dokter spesialis di Mataram. Jam buka, layanan, lokasi, dan chat WhatsApp dalam satu halaman.","https://www.citramedika.net","citramedika",["Kesehatan","Profil bisnis","Next.js"]],
+ ["Skolapedia","Direktori 183 sekolah Jabodetabek untuk orang tua. Bandingkan jenjang, kurikulum, akreditasi, dan biaya sebelum survei.","https://sekolapedia.vercel.app","skolapedia",["Pendidikan","Direktori","Nuxt"]],
+ ["hlly","Toko brand pakaian dari Bandung. Katalog kaus dan jaket parasut dengan 15 pilihan warna.","https://hlly.vercel.app","hlly",["Fashion","Toko online"]],
+ ["Melati","Undangan pernikahan digital dengan RSVP, amplop digital, galeri, dan QR check-in. Siap dibagikan lewat WhatsApp.","https://webinv-six.vercel.app","webinv",["Pernikahan","Produk SaaS","Next.js"]],
+ ["Makan Angin","Katalog 217 hidangan dari 38 provinsi. Pesan seperti aplikasi ojek online, yang datang resepnya.","https://makanangin.vercel.app","makanangin",["Kuliner","Katalog","Next.js"]],
+ ["Sealed","Halaman hadiah personal berisi foto, pesan, dan musik. Dikirim sebagai link pribadi atau kode QR.","https://giftygen.vercel.app","giftygen",["Hadiah","Landing page","Next.js"]],
+ ["FuelWatch Jakarta","Peta harga BBM di SPBU Jakarta. Cari yang termurah di sekitar Anda dan lihat selisihnya.","https://fuel-tracker-ashen.vercel.app","fuel",["Peta","Aplikasi web","Vite"]],
+ ["puasin","Toko simulasi untuk belanja tanpa keluar uang. Checkout sepuasnya, nol transaksi sungguhan.","https://pwasin.vercel.app","puasin",["E-commerce","PWA"]],
+ ["ImUpScaller","Siapkan foto untuk dicetak di 300 DPI dengan 8 ukuran standar. Diproses di browser, tidak ada yang diunggah.","https://image-upscaller.vercel.app","upscaller",["Alat","Client-side","Vite"]],
+ ["Blockchain demo","Simulasi alur e-money di blockchain: wallet, transaksi, mining, dan blok. Dibuat untuk presentasi edukasi.","https://blockchain-demo-theta.vercel.app","blockchain",["Edukasi","Simulasi"]]
+];
+// ponytail: alternating 7/5 then 5/7 spans give an editorial rhythm without per-item config
+const span=i=>[["wide","narrow"],["narrow","wide"]][Math.floor(i/2)%2][i%2];
+const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+document.getElementById("grid").innerHTML=P.map(([n,d,u,img,t],i)=>{const host=u.replace(/^https:\/\/(www\.)?/,"");return `
+<article class="proj ${span(i)}">
+ <a class="shot" href="${u}" target="_blank" rel="noopener" aria-label="Buka ${esc(n)} di tab baru">
+  <div class="frame"><div class="bar"><i></i><i></i><i></i><b>${host}</b></div><img src="shots/${img}.webp" alt="Tampilan beranda ${esc(n)}" width="1200" height="750" loading="lazy"></div>
+ </a>
+ <h3>${esc(n)} <a href="${u}" target="_blank" rel="noopener">Kunjungi situs</a></h3>
+ <p>${esc(d)}</p>
+ <ul class="tags">${t.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
+</article>`}).join("");
+document.getElementById("y").textContent=new Date().getFullYear();
+</script>
 </body>
 </html>
