@@ -3,130 +3,188 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Creachita — Studio Web</title>
-<meta name="description" content="Creachita merancang dan membangun situs perusahaan, toko online, dan aplikasi web untuk bisnis di Indonesia — dari ide sampai live di domain Anda.">
-<meta property="og:title" content="Creachita — Studio Web">
-<meta property="og:description" content="Situs perusahaan, toko online, dan aplikasi web. Dari ide sampai live di domain Anda.">
+<title>Creachita — Studio Desain &amp; Pengembangan Web</title>
+<meta name="description" content="Creachita adalah studio desain dan pengembangan web. Kami membangun situs perusahaan, toko online, dan aplikasi web yang rapi, cepat, dan mudah dikelola.">
+<meta property="og:title" content="Creachita — Studio Desain & Pengembangan Web">
+<meta property="og:description" content="Situs perusahaan, toko online, dan aplikasi web yang rapi, cepat, dan mudah dikelola.">
 <meta property="og:url" content="https://www.creachita.com">
-<meta name="theme-color" content="#121933">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23121933'/><path d='M22 11.5a7 7 0 1 0 0 9' fill='none' stroke='%23C9F0E4' stroke-width='4' stroke-linecap='round'/></svg>">
+<meta name="theme-color" content="#14211E">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%2314211E'/><text x='16' y='23' text-anchor='middle' font-family='Georgia,serif' font-size='20' fill='%23C9A96E'>C</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300..600&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --fog:#ECEEF2;      /* page */
-  --paper:#FFFFFF;
-  --ink:#121933;      /* navy ink, text + dark sections */
-  --ink-2:#4A5170;    /* secondary text */
-  --line:#D5D9E3;
-  --cobalt:#2F45E8;   /* action */
-  --mint:#C9F0E4;     /* highlight on ink */
-  --gutter:clamp(16px,4vw,48px);
-  --max:1240px;
+  --bg:#FFFFFF;
+  --mist:#F2F4F2;     /* alt section / media backdrop */
+  --ink:#14211E;      /* deep pine-black */
+  --ink-2:#55615D;
+  --line:#DFE3E0;
+  --pine:#1F4A40;     /* action */
+  --brass:#B4925A;    /* fine detail */
+  --gutter:clamp(16px,4.5vw,56px);
+  --max:1200px;
+  --serif:Newsreader,Georgia,serif;
 }
 *{box-sizing:border-box;margin:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{background:var(--fog);color:var(--ink);font:400 1.0625rem/1.6 Archivo,system-ui,sans-serif;font-stretch:100%}
+body{background:var(--bg);color:var(--ink);font:400 1.0625rem/1.65 "Hanken Grotesk",system-ui,sans-serif}
 img{display:block;max-width:100%;height:auto}
 a{color:inherit}
-:focus-visible{outline:3px solid var(--cobalt);outline-offset:3px;border-radius:4px}
-.dark :focus-visible{outline-color:var(--mint)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--pine);outline-offset:3px;border-radius:6px}
+.dark :focus-visible{outline-color:var(--brass)}
 .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
-.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:#fff;padding:8px 14px;border-radius:6px;z-index:9}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:#fff;padding:8px 14px;border-radius:6px;z-index:20}
 .skip:focus{left:8px}
 
 /* type */
-.display{font-stretch:125%;font-weight:800;letter-spacing:-.035em;line-height:.95}
-h1.display{font-size:clamp(2.6rem,7.4vw,6.4rem)}
-h2.display{font-size:clamp(2.1rem,5vw,4rem)}
-.lede{font-size:clamp(1.125rem,1.6vw,1.3rem);color:var(--ink-2);max-width:34em}
+.serif{font-family:var(--serif);font-weight:400;letter-spacing:-.015em;font-optical-sizing:auto}
+h1.serif{font-size:clamp(2.5rem,4.8vw,4.1rem);line-height:1.04}
+h2.serif{font-size:clamp(2.1rem,4vw,3.25rem);line-height:1.08}
+.lede{font-size:clamp(1.1rem,1.4vw,1.22rem);color:var(--ink-2);max-width:32em}
+.kicker{font-size:.92rem;color:var(--ink-2);display:flex;align-items:center;gap:12px}
+.kicker::before{content:"";width:28px;height:1px;background:var(--brass)}
 
 /* buttons */
-.btn{display:inline-flex;align-items:center;gap:.5em;font:inherit;font-weight:600;text-decoration:none;padding:.8em 1.4em;border-radius:999px;border:1.5px solid var(--ink);transition:background .15s,color .15s}
-.btn-solid{background:var(--cobalt);border-color:var(--cobalt);color:#fff}
+.btn{display:inline-flex;align-items:center;gap:.55em;font-weight:500;text-decoration:none;padding:.85em 1.5em;border-radius:999px;border:1px solid var(--ink);background:none;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.btn-solid{background:var(--pine);border-color:var(--pine);color:#fff}
 .btn-solid:hover{background:var(--ink);border-color:var(--ink)}
 .btn-line:hover{background:var(--ink);color:#fff}
+.ext{width:.8em;height:.8em;flex:none}
 
 /* header */
-header{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--fog) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid transparent}
-header .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
-.logo{font-stretch:125%;font-weight:800;font-size:1.35rem;letter-spacing:-.04em;text-decoration:none}
-.logo span{color:var(--cobalt)}
-nav{display:flex;align-items:center;gap:clamp(14px,2.5vw,32px);font-weight:500;font-size:.98rem}
+header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.86);backdrop-filter:saturate(1.4) blur(12px);-webkit-backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{font-family:var(--serif);font-size:1.6rem;letter-spacing:-.02em;text-decoration:none}
+.logo span{color:var(--brass)}
+nav{display:flex;align-items:center;gap:clamp(16px,2.6vw,36px);font-size:.97rem}
 nav a{text-decoration:none}
-nav a:not(.btn):hover{color:var(--cobalt)}
-nav .btn{padding:.55em 1.1em}
-@media(max-width:640px){nav a:not(.btn){display:none}}
+nav a:not(.btn){color:var(--ink-2)}
+nav a:not(.btn):hover{color:var(--ink)}
+nav .btn{padding:.6em 1.2em}
+@media(max-width:700px){header nav a:not(.btn){display:none}}
 
 /* hero */
-.hero{padding:clamp(48px,9vw,120px) 0 0;overflow:hidden}
-.hero h1{max-width:11ch}
-.hero .lede{margin-top:28px}
-.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
-.fan{position:relative;height:clamp(240px,42vw,560px);margin-top:clamp(48px,7vw,88px)}
-.frame{background:var(--paper);border-radius:12px;overflow:hidden;box-shadow:0 1px 0 var(--line),0 30px 60px -30px rgba(18,25,51,.45);border:1px solid var(--line)}
-.frame .bar{height:26px;display:flex;align-items:center;gap:6px;padding:0 12px;background:#F6F7F9;border-bottom:1px solid var(--line)}
-.frame .bar i{width:8px;height:8px;border-radius:50%;background:var(--line)}
-.frame .bar b{margin-left:10px;font-weight:500;font-size:.72rem;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.frame img{aspect-ratio:16/10;object-fit:cover;object-position:top;width:100%}
-.fan .frame{position:absolute;width:min(62%,760px);top:0;left:50%;transform-origin:50% 120%;animation:fan .9s cubic-bezier(.2,.8,.2,1) .15s backwards}
-.fan .f1{transform:translateX(-112%) rotate(-5deg) translateY(40px);z-index:1}
-.fan .f2{transform:translateX(-50%);z-index:2;animation-delay:0s}
-.fan .f3{transform:translateX(12%) rotate(5deg) translateY(40px);z-index:1}
-@keyframes fan{from{transform:translateX(-50%) translateY(60px);opacity:0}}
-@media(max-width:640px){.fan .frame{width:78%}.fan .f1{transform:translateX(-96%) rotate(-5deg) translateY(30px)}.fan .f3{transform:translateX(-4%) rotate(5deg) translateY(30px)}}
+.hero{padding:clamp(56px,8vw,112px) 0 clamp(72px,9vw,128px);overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(40px,5vw,72px);align-items:center}
+.hero h1{margin-top:22px}
+.hero .lede{margin-top:24px}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+.phones{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,1.6vw,20px);align-items:start}
+.phones .phone:nth-child(1){margin-top:56px}
+.phones .phone:nth-child(3){margin-top:28px}
+.phone{border-radius:clamp(18px,2.4vw,30px);border:clamp(4px,.55vw,7px) solid var(--ink);overflow:hidden;background:var(--ink);box-shadow:0 40px 60px -40px rgba(20,33,30,.55)}
+.phone img{aspect-ratio:390/844;object-fit:cover;object-position:top;width:100%}
+.phones .phone{animation:rise 1s cubic-bezier(.2,.75,.2,1) backwards}
+.phones .phone:nth-child(2){animation-delay:.12s}
+.phones .phone:nth-child(3){animation-delay:.24s}
+@keyframes rise{from{opacity:0;transform:translateY(48px)}}
+@media(max-width:900px){.hero .wrap{grid-template-columns:1fr}.phones{max-width:520px}}
 
-/* work */
-.dark{background:var(--ink);color:#E9ECF6}
-.work{padding:clamp(72px,10vw,140px) 0;margin-top:-1px;position:relative;z-index:3}
-.sec-head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:20px 40px;margin-bottom:clamp(40px,6vw,72px)}
-.sec-head p{max-width:30em;color:var(--ink-2)}
-.dark .sec-head p{color:#A9B0CC}
-.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(40px,5vw,72px) clamp(20px,3vw,40px)}
-.proj{grid-column:span 6;display:flex;flex-direction:column}
-.proj.wide{grid-column:span 7}
-.proj.narrow{grid-column:span 5}
-.proj .frame{border-color:#2A3256;box-shadow:none}
-.proj .frame .bar{background:#1B2347;border-color:#2A3256}
-.proj .frame .bar i{background:#3A4370}
-.proj .frame .bar b{color:#8E96B8}
-.proj a.shot{display:block;border-radius:12px;text-decoration:none}
-.proj a.shot:hover .frame{border-color:var(--mint)}
-.proj h3{font-stretch:112%;font-weight:700;font-size:1.45rem;letter-spacing:-.02em;margin-top:22px;display:flex;justify-content:space-between;gap:16px;align-items:baseline}
-.proj h3 a{font-stretch:100%;font-weight:500;font-size:.95rem;color:var(--mint);text-underline-offset:4px;white-space:nowrap}
-.proj p{color:#A9B0CC;margin-top:8px;max-width:38em}
-.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;padding:0;list-style:none}
-.tags li{font-size:.8rem;padding:3px 10px;border-radius:999px;border:1px solid #333C63;color:#C3C9E0}
-@media(max-width:860px){.proj,.proj.wide,.proj.narrow{grid-column:1/-1}}
+/* section shell */
+.sec{padding:clamp(80px,10vw,140px) 0;scroll-margin-top:72px}
+.sec-head{display:grid;grid-template-columns:1fr 1fr;gap:20px 64px;align-items:end;margin-bottom:clamp(48px,6vw,80px)}
+.sec-head h2{margin-top:16px}
+.sec-head p{color:var(--ink-2);max-width:30em}
+@media(max-width:800px){.sec-head{grid-template-columns:1fr}}
+
+/* featured work */
+.work{background:var(--mist)}
+.feat{display:grid;grid-template-columns:repeat(12,1fr);gap:32px;align-items:center}
+.feat+.feat{margin-top:clamp(80px,10vw,136px)}
+.feat .media{grid-column:1/span 7;position:relative;padding:0 clamp(28px,4vw,56px) clamp(28px,4vw,48px) 0}
+.feat .info{grid-column:9/span 4}
+.feat:nth-child(even) .media{grid-column:6/span 7;order:2;padding:0 0 clamp(28px,4vw,48px) clamp(28px,4vw,56px)}
+.feat:nth-child(even) .info{grid-column:1/span 4}
+.browser{background:#fff;border-radius:10px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 60px -36px rgba(20,33,30,.35)}
+.browser .bar{height:30px;display:flex;align-items:center;gap:6px;padding:0 14px;border-bottom:1px solid var(--line);background:#FAFBFA}
+.browser .bar i{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.browser .bar b{flex:1;text-align:center;font-weight:400;font-size:.75rem;color:var(--ink-2);margin-right:40px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.browser img{aspect-ratio:16/10;object-fit:cover;object-position:top;width:100%}
+.feat .phone{position:absolute;right:0;bottom:0;width:24%}
+.feat:nth-child(even) .phone{right:auto;left:0}
+.feat h3{font-family:var(--serif);font-weight:400;font-size:clamp(1.9rem,3vw,2.5rem);line-height:1.1;letter-spacing:-.015em;margin-top:14px}
+.feat .info>p:not(.kicker){color:var(--ink-2);margin-top:16px}
+.meta{display:grid;grid-template-columns:auto 1fr;gap:10px 24px;margin:28px 0 32px;padding-top:24px;border-top:1px solid var(--line);font-size:.95rem}
+.meta dt{color:var(--ink-2)}
+@media(max-width:900px){
+  .feat .media,.feat:nth-child(even) .media,.feat .info,.feat:nth-child(even) .info{grid-column:1/-1;order:0}
+  .feat:nth-child(even) .media{padding:0 clamp(28px,4vw,56px) clamp(28px,4vw,48px) 0}
+  .feat:nth-child(even) .phone{left:auto;right:0}
+}
+
+/* more work */
+.more-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px 16px;margin:clamp(96px,12vw,160px) 0 32px;padding-top:28px;border-top:1px solid var(--line)}
+.more-head h3{font-family:var(--serif);font-weight:400;font-size:clamp(1.6rem,2.6vw,2rem)}
+.more-head p{color:var(--ink-2);font-size:.95rem}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(28px,3vw,40px) clamp(20px,2.4vw,32px)}
+.card{all:unset;display:block;cursor:pointer;border-radius:12px}
+.card:focus-visible{outline:2px solid var(--pine);outline-offset:6px}
+.card .thumb{display:block;border-radius:12px;overflow:hidden;background:#fff;border:1px solid var(--line);aspect-ratio:16/11}
+.card .thumb img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .6s cubic-bezier(.2,.75,.2,1)}
+.card:hover .thumb img,.card:focus-visible .thumb img{transform:scale(1.035)}
+.card .t{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-top:16px}
+.card strong{font-family:var(--serif);font-weight:400;font-size:1.4rem;letter-spacing:-.01em}
+.card .c{color:var(--ink-2);font-size:.9rem;white-space:nowrap}
+.card .d{display:block;color:var(--ink-2);font-size:.95rem;margin-top:4px}
+.card .open{display:inline-block;margin-top:10px;font-size:.92rem;font-weight:500;color:var(--pine);text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--brass)}
+@media(max-width:900px){.cards{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.cards{grid-template-columns:1fr}}
+
+/* dialog */
+dialog{margin:auto;border:0;padding:0;border-radius:16px;width:min(1040px,calc(100% - 32px));max-height:calc(100% - 32px);color:var(--ink);background:#fff;box-shadow:0 40px 100px -30px rgba(0,0,0,.5)}
+dialog::backdrop{background:rgba(20,33,30,.62);backdrop-filter:blur(4px)}
+dialog[open]{animation:pop .25s ease-out}
+@keyframes pop{from{opacity:0;transform:translateY(12px)}}
+.dlg{display:grid;grid-template-columns:1.5fr 1fr}
+.dlg .media{background:var(--mist);padding:clamp(20px,3vw,40px);position:relative;display:flex;align-items:center}
+.dlg .media .browser{width:84%}
+.dlg .media .phone{position:absolute;right:clamp(20px,3vw,40px);bottom:clamp(20px,3vw,40px);width:24%}
+.dlg .info{padding:clamp(24px,3vw,40px);display:flex;flex-direction:column}
+.dlg h3{font-family:var(--serif);font-weight:400;font-size:2rem;line-height:1.1;margin-top:12px}
+.dlg .info>p:not(.kicker){color:var(--ink-2);margin-top:14px}
+.dlg .meta{margin:24px 0 28px}
+.dlg .info .btn{align-self:flex-start;margin-top:auto}
+.x{position:absolute;top:12px;right:12px;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:#fff;cursor:pointer;display:grid;place-items:center;z-index:2}
+.x:hover{background:var(--mist)}
+@media(max-width:760px){.dlg{grid-template-columns:1fr}.dlg .info .btn{margin-top:0}}
 
 /* services */
-.services{padding:clamp(72px,10vw,140px) 0}
-.svc{display:grid;grid-template-columns:repeat(2,1fr);border-top:1.5px solid var(--ink)}
-.svc div{padding:28px 0 32px;border-bottom:1px solid var(--line)}
-.svc div:nth-child(odd){padding-right:clamp(16px,4vw,56px)}
-.svc div:nth-child(even){padding-left:clamp(16px,4vw,56px);border-left:1px solid var(--line)}
-.svc h3{font-stretch:112%;font-weight:700;font-size:1.35rem;letter-spacing:-.015em}
+.svc{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--ink)}
+.svc div{padding:32px 0 36px;border-bottom:1px solid var(--line)}
+.svc div:nth-child(odd){padding-right:clamp(16px,5vw,72px)}
+.svc div:nth-child(even){padding-left:clamp(16px,5vw,72px);border-left:1px solid var(--line)}
+.svc h3{font-family:var(--serif);font-weight:400;font-size:1.65rem;letter-spacing:-.01em}
 .svc p{color:var(--ink-2);margin-top:8px;max-width:30em}
 @media(max-width:700px){.svc{grid-template-columns:1fr}.svc div:nth-child(n){padding-left:0;padding-right:0;border-left:0}}
 
 /* process */
-.process{padding:0 0 clamp(72px,10vw,140px)}
-.steps{list-style:none;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(20px,3vw,40px);counter-reset:s}
-.steps li{counter-increment:s;padding-top:20px;border-top:1.5px solid var(--ink)}
-.steps li::before{content:counter(s);display:block;font-stretch:125%;font-weight:800;font-size:2.4rem;line-height:1;color:var(--cobalt);margin-bottom:18px}
-.steps h3{font-weight:700;font-size:1.15rem}
+.process{padding-top:0}
+.steps{list-style:none;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(24px,3vw,40px);counter-reset:s}
+.steps li{counter-increment:s}
+.steps li::before{content:"0" counter(s);display:block;font-family:var(--serif);font-size:1.1rem;color:var(--brass);padding-bottom:14px;margin-bottom:20px;border-bottom:1px solid var(--line)}
+.steps h3{font-weight:600;font-size:1.1rem}
 .steps p{color:var(--ink-2);margin-top:6px;font-size:1rem}
-@media(max-width:860px){.steps{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){.steps{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:480px){.steps{grid-template-columns:1fr}}
 
 /* contact */
-.contact{padding:clamp(72px,10vw,140px) 0}
-.contact .lede{color:#A9B0CC;margin-top:24px}
-.mail{display:inline-block;margin-top:40px;font-stretch:112%;font-weight:700;font-size:clamp(1.5rem,4.4vw,3.4rem);letter-spacing:-.025em;color:var(--mint);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:.18em;word-break:break-word}
-.mail:hover{color:#fff}
-footer{border-top:1px solid #2A3256;padding:28px 0;font-size:.92rem;color:#8E96B8}
+.dark{background:var(--ink);color:#E8ECEA}
+.contact .wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:40px 80px;align-items:end}
+.contact .kicker{color:#A3AFAA}
+.contact h2{margin-top:16px}
+.contact .lede{color:#A3AFAA;margin-top:20px}
+.contact .box{border-top:1px solid #33433E;padding-top:28px}
+.contact .box span{display:block;color:#A3AFAA;font-size:.95rem}
+.mail{display:inline-block;margin:6px 0 28px;font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.3rem);text-decoration:underline;text-decoration-color:var(--brass);text-decoration-thickness:1px;text-underline-offset:.2em;word-break:break-word}
+.mail:hover{color:var(--brass)}
+.contact .btn-solid{background:var(--brass);border-color:var(--brass);color:var(--ink)}
+.contact .btn-solid:hover{background:#fff;border-color:#fff}
+@media(max-width:800px){.contact .wrap{grid-template-columns:1fr}}
+footer{padding:28px 0;font-size:.92rem;color:#8D9A95;border-top:1px solid #2A3833}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+footer nav{gap:24px;font-size:.92rem}
 footer a{text-decoration:none}
 footer a:hover{color:#fff}
 
@@ -134,16 +192,16 @@ footer a:hover{color:#fff}
 </style>
 </head>
 <body>
-<a class="skip" href="#karya">Lewati ke karya</a>
+<a class="skip" href="#portofolio">Lewati ke portofolio</a>
 
 <header>
   <div class="wrap">
-    <a class="logo" href="#" aria-label="Creachita, ke atas">creachita<span>.</span></a>
+    <a class="logo" href="#" aria-label="Creachita, kembali ke atas">Creachita<span>.</span></a>
     <nav aria-label="Utama">
-      <a href="#karya">Karya</a>
+      <a href="#portofolio">Portofolio</a>
       <a href="#layanan">Layanan</a>
       <a href="#proses">Proses</a>
-      <a class="btn btn-solid" href="#kontak">Mulai proyek</a>
+      <a class="btn btn-solid" href="#kontak">Hubungi kami</a>
     </nav>
   </div>
 </header>
@@ -151,99 +209,125 @@ footer a:hover{color:#fff}
 <main>
 <section class="hero">
   <div class="wrap">
-    <h1 class="display">Web yang rapi, cepat, dan dipakai orang.</h1>
-    <p class="lede">Creachita adalah studio web dari Indonesia. Kami merancang dan membangun situs perusahaan, toko online, dan aplikasi web — dari obrolan pertama sampai live di domain Anda.</p>
-    <div class="ctas">
-      <a class="btn btn-solid" href="#kontak">Ceritakan proyek Anda</a>
-      <a class="btn btn-line" href="#karya">Lihat karya</a>
+    <div>
+      <p class="kicker">Studio desain &amp; pengembangan web</p>
+      <h1 class="serif">Situs web yang membuat bisnis Anda tampil meyakinkan.</h1>
+      <p class="lede">Kami merancang dan membangun situs perusahaan, toko online, dan aplikasi web yang rapi, cepat, dan mudah dikelola — dari konsep sampai live di domain Anda.</p>
+      <div class="ctas">
+        <a class="btn btn-solid" href="#kontak">Diskusikan proyek</a>
+        <a class="btn btn-line" href="#portofolio">Lihat portofolio</a>
+      </div>
     </div>
-  </div>
-  <div class="fan" aria-hidden="true">
-    <div class="frame f1"><div class="bar"><i></i><i></i><i></i><b>sekolapedia.vercel.app</b></div><img src="shots/skolapedia.webp" alt="" width="1200" height="750"></div>
-    <div class="frame f2"><div class="bar"><i></i><i></i><i></i><b>citramedika.net</b></div><img src="shots/citramedika.webp" alt="" width="1200" height="750" fetchpriority="high"></div>
-    <div class="frame f3"><div class="bar"><i></i><i></i><i></i><b>hlly.vercel.app</b></div><img src="shots/hlly.webp" alt="" width="1200" height="750"></div>
+    <div class="phones" aria-hidden="true">
+      <div class="phone"><img src="shots/m-skolapedia.webp" alt="" width="520" height="1125"></div>
+      <div class="phone"><img src="shots/m-webinv.webp" alt="" width="520" height="1125" fetchpriority="high"></div>
+      <div class="phone"><img src="shots/m-hlly.webp" alt="" width="520" height="1125"></div>
+    </div>
   </div>
 </section>
 
-<section class="work dark" id="karya" aria-labelledby="karya-h">
+<section class="sec work" id="portofolio" aria-labelledby="porto-h">
   <div class="wrap">
     <div class="sec-head">
-      <h2 class="display" id="karya-h">Karya yang sudah live</h2>
-      <p>Semua di bawah ini bisa Anda buka sekarang. Klinik, toko pakaian, direktori sekolah, undangan digital, sampai alat kecil yang kami bangun untuk iseng tapi serius.</p>
+      <div><p class="kicker">Portofolio</p><h2 class="serif" id="porto-h">Proyek pilihan</h2></div>
+      <p>Setiap proyek di bawah ini sudah live dan bisa Anda kunjungi. Dari klinik dan toko pakaian sampai direktori sekolah dan produk digital.</p>
     </div>
-    <div class="grid" id="grid"></div>
+    <div id="featured"></div>
+    <div class="more-head"><h3>Proyek lainnya</h3><p>Pilih proyek untuk melihat detail</p></div>
+    <div class="cards" id="cards"></div>
   </div>
 </section>
 
-<section class="services" id="layanan" aria-labelledby="layanan-h">
+<dialog id="dlg" aria-labelledby="dlg-h">
+  <button class="x" type="button" aria-label="Tutup" onclick="dlg.close()"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 3l10 10M13 3L3 13"/></svg></button>
+  <div class="dlg" id="dlg-body"></div>
+</dialog>
+
+<section class="sec" id="layanan" aria-labelledby="layanan-h">
   <div class="wrap">
     <div class="sec-head">
-      <h2 class="display" id="layanan-h">Yang kami kerjakan</h2>
-      <p>Tim kecil, satu proyek dipegang dari desain sampai rilis. Tidak ada oper-operan.</p>
+      <div><p class="kicker">Layanan</p><h2 class="serif" id="layanan-h">Apa yang kami kerjakan</h2></div>
+      <p>Satu tim memegang proyek Anda dari desain sampai rilis, jadi detail tidak hilang di tengah jalan.</p>
     </div>
     <div class="svc">
-      <div><h3>Situs profil perusahaan</h3><p>Halaman yang menjelaskan bisnis Anda dengan jelas, tampil bagus di HP, dan mudah ditemukan di Google.</p></div>
-      <div><h3>Toko &amp; katalog online</h3><p>Katalog produk, keranjang, dan pesan lewat WhatsApp atau pembayaran online, sesuai cara Anda berjualan.</p></div>
+      <div><h3>Situs profil perusahaan</h3><p>Menjelaskan bisnis Anda dengan jelas, tampil rapi di ponsel, dan mudah ditemukan di Google.</p></div>
+      <div><h3>Toko &amp; katalog online</h3><p>Katalog produk, keranjang, dan pemesanan lewat WhatsApp atau pembayaran online, sesuai cara Anda berjualan.</p></div>
       <div><h3>Aplikasi web &amp; dashboard</h3><p>Direktori, sistem internal, peta data, dan alat kerja yang dibuat khusus untuk alur tim Anda.</p></div>
-      <div><h3>Desain UI/UX</h3><p>Riset singkat, alur pengguna, dan desain antarmuka yang siap dibangun — atau kami bangun sekalian.</p></div>
+      <div><h3>Desain UI/UX</h3><p>Riset singkat, alur pengguna, dan desain antarmuka yang siap dibangun — atau langsung kami bangun.</p></div>
     </div>
   </div>
 </section>
 
-<section class="process" id="proses" aria-labelledby="proses-h">
+<section class="sec process" id="proses" aria-labelledby="proses-h">
   <div class="wrap">
-    <div class="sec-head"><h2 class="display" id="proses-h">Dari ide ke live</h2></div>
+    <div class="sec-head">
+      <div><p class="kicker">Proses</p><h2 class="serif" id="proses-h">Dari konsep ke live</h2></div>
+      <p>Anda selalu tahu proyek sedang di tahap mana, dan bisa melihat hasilnya sejak awal.</p>
+    </div>
     <ol class="steps">
-      <li><h3>Ngobrol</h3><p>Kita bahas tujuan, pengguna, dan anggaran. Anda dapat rencana dan estimasi tertulis.</p></li>
-      <li><h3>Rancang</h3><p>Struktur halaman dan desain visual. Anda review di link, bukan di file PDF.</p></li>
-      <li><h3>Bangun</h3><p>Dikerjakan bertahap dengan preview live yang bisa Anda buka kapan saja.</p></li>
-      <li><h3>Rilis &amp; rawat</h3><p>Live di domain Anda dengan SSL. Perubahan setelah rilis tetap kami bantu.</p></li>
+      <li><h3>Diskusi</h3><p>Kita bahas tujuan, pengguna, dan anggaran. Anda menerima rencana dan estimasi tertulis.</p></li>
+      <li><h3>Desain</h3><p>Struktur halaman dan tampilan visual, direview langsung lewat tautan pratinjau.</p></li>
+      <li><h3>Pengembangan</h3><p>Dikerjakan bertahap dengan versi pratinjau yang bisa Anda buka kapan saja.</p></li>
+      <li><h3>Rilis &amp; dukungan</h3><p>Live di domain Anda dengan SSL. Perubahan setelah rilis tetap kami dampingi.</p></li>
     </ol>
   </div>
 </section>
 
-<section class="contact dark" id="kontak" aria-labelledby="kontak-h">
+<section class="sec contact dark" id="kontak" aria-labelledby="kontak-h">
   <div class="wrap">
-    <h2 class="display" id="kontak-h">Punya proyek?<br>Ceritakan ke kami.</h2>
-    <p class="lede">Kirim gambaran singkat: bisnis Anda, apa yang ingin dibuat, dan kapan perlu live. Kami balas dalam satu hari kerja.</p>
-    <a class="mail" href="mailto:hello@creachita.com?subject=Proyek%20baru">hello@creachita.com</a>
+    <div>
+      <p class="kicker">Kontak</p>
+      <h2 class="serif" id="kontak-h">Mari bicarakan proyek Anda.</h2>
+      <p class="lede">Ceritakan singkat tentang bisnis Anda, apa yang ingin dibuat, dan kapan perlu live. Kami membalas dalam satu hari kerja.</p>
+    </div>
+    <div class="box">
+      <span>Email</span>
+      <a class="mail" href="mailto:hello@creachita.com?subject=Proyek%20baru">hello@creachita.com</a><br>
+      <a class="btn btn-solid" href="mailto:hello@creachita.com?subject=Proyek%20baru">Kirim email</a>
+    </div>
   </div>
 </section>
 </main>
 
 <footer class="dark">
   <div class="wrap">
-    <span>© <span id="y">2026</span> Creachita</span>
-    <span><a href="#karya">Karya</a> &nbsp; <a href="#layanan">Layanan</a> &nbsp; <a href="#kontak">Kontak</a></span>
+    <span>© <span id="y">2026</span> Creachita. Studio desain &amp; pengembangan web.</span>
+    <nav aria-label="Footer"><a href="#portofolio">Portofolio</a><a href="#layanan">Layanan</a><a href="#kontak">Kontak</a></nav>
   </div>
 </footer>
 
 <script>
+// [name, field, scope, stack, description, url, shot, featured]
 const P=[
- ["Citra Medika","Situs apotek dan praktik dokter spesialis di Mataram. Jam buka, layanan, lokasi, dan chat WhatsApp dalam satu halaman.","https://www.citramedika.net","citramedika",["Kesehatan","Profil bisnis","Next.js"]],
- ["Skolapedia","Direktori 183 sekolah Jabodetabek untuk orang tua. Bandingkan jenjang, kurikulum, akreditasi, dan biaya sebelum survei.","https://sekolapedia.vercel.app","skolapedia",["Pendidikan","Direktori","Nuxt"]],
- ["hlly","Toko brand pakaian dari Bandung. Katalog kaus dan jaket parasut dengan 15 pilihan warna.","https://hlly.vercel.app","hlly",["Fashion","Toko online"]],
- ["Melati","Undangan pernikahan digital dengan RSVP, amplop digital, galeri, dan QR check-in. Siap dibagikan lewat WhatsApp.","https://webinv-six.vercel.app","webinv",["Pernikahan","Produk SaaS","Next.js"]],
- ["Makan Angin","Katalog 217 hidangan dari 38 provinsi. Pesan seperti aplikasi ojek online, yang datang resepnya.","https://makanangin.vercel.app","makanangin",["Kuliner","Katalog","Next.js"]],
- ["Sealed","Halaman hadiah personal berisi foto, pesan, dan musik. Dikirim sebagai link pribadi atau kode QR.","https://giftygen.vercel.app","giftygen",["Hadiah","Landing page","Next.js"]],
- ["FuelWatch Jakarta","Peta harga BBM di SPBU Jakarta. Cari yang termurah di sekitar Anda dan lihat selisihnya.","https://fuel-tracker-ashen.vercel.app","fuel",["Peta","Aplikasi web","Vite"]],
- ["puasin","Toko simulasi untuk belanja tanpa keluar uang. Checkout sepuasnya, nol transaksi sungguhan.","https://pwasin.vercel.app","puasin",["E-commerce","PWA"]],
- ["ImUpScaller","Siapkan foto untuk dicetak di 300 DPI dengan 8 ukuran standar. Diproses di browser, tidak ada yang diunggah.","https://image-upscaller.vercel.app","upscaller",["Alat","Client-side","Vite"]],
- ["Blockchain demo","Simulasi alur e-money di blockchain: wallet, transaksi, mining, dan blok. Dibuat untuk presentasi edukasi.","https://blockchain-demo-theta.vercel.app","blockchain",["Edukasi","Simulasi"]]
+ ["Citra Medika","Kesehatan","Situs profil bisnis","Next.js","Situs apotek dan praktik dokter spesialis penyakit dalam di Mataram. Pengunjung langsung menemukan jam buka, layanan, lokasi, dan tombol chat WhatsApp.","https://www.citramedika.net","citramedika",1],
+ ["Skolapedia","Pendidikan","Direktori & pencarian","Nuxt","Direktori 183 sekolah di Jabodetabek untuk orang tua. Bandingkan jenjang, kurikulum, akreditasi, dan biaya sebelum survei ke sekolah.","https://sekolapedia.vercel.app","skolapedia",1],
+ ["hlly","Fashion","Toko online","Web statis","Toko brand pakaian dari Bandung. Katalog kaus katun dan jaket parasut dengan 15 pilihan warna, dirancang dengan karakter brand yang kuat.","https://hlly.vercel.app","hlly",1],
+ ["Melati","Pernikahan","Produk digital","Next.js","Undangan pernikahan digital dengan RSVP, amplop digital, galeri, dan QR check-in tamu. Siap dibagikan lewat WhatsApp.","https://webinv-six.vercel.app","webinv",1],
+ ["Makan Angin","Kuliner","Katalog interaktif","Next.js","Katalog 217 hidangan dari 38 provinsi dengan alur pesan ala aplikasi ojek online. Yang datang bukan makanan, tapi resepnya.","https://makanangin.vercel.app","makanangin"],
+ ["Sealed","Hadiah","Landing page produk","Next.js","Halaman hadiah personal berisi foto, pesan, dan musik, dikirim sebagai tautan pribadi atau kode QR.","https://giftygen.vercel.app","giftygen"],
+ ["FuelWatch Jakarta","Transportasi","Aplikasi peta","Vite","Peta harga BBM di SPBU Jakarta untuk mencari yang termurah di sekitar Anda beserta selisih harganya.","https://fuel-tracker-ashen.vercel.app","fuel"],
+ ["puasin","E-commerce","Aplikasi web (PWA)","PWA","Toko simulasi untuk belanja tanpa mengeluarkan uang. Checkout sepuasnya, tanpa transaksi sungguhan.","https://pwasin.vercel.app","puasin"],
+ ["ImUpScaller","Percetakan","Alat berbasis browser","Vite","Menyiapkan foto untuk dicetak di 300 DPI dengan 8 ukuran standar. Semua diproses di browser, tidak ada file yang diunggah.","https://image-upscaller.vercel.app","upscaller"],
+ ["Blockchain demo","Edukasi","Simulasi interaktif","Web statis","Simulasi alur e-money di blockchain — wallet, transaksi, mining, dan blok — untuk presentasi edukasi.","https://blockchain-demo-theta.vercel.app","blockchain"]
 ];
-// ponytail: alternating 7/5 then 5/7 spans give an editorial rhythm without per-item config
-const span=i=>[["wide","narrow"],["narrow","wide"]][Math.floor(i/2)%2][i%2];
 const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-document.getElementById("grid").innerHTML=P.map(([n,d,u,img,t],i)=>{const host=u.replace(/^https:\/\/(www\.)?/,"");return `
-<article class="proj ${span(i)}">
- <a class="shot" href="${u}" target="_blank" rel="noopener" aria-label="Buka ${esc(n)} di tab baru">
-  <div class="frame"><div class="bar"><i></i><i></i><i></i><b>${host}</b></div><img src="shots/${img}.webp" alt="Tampilan beranda ${esc(n)}" width="1200" height="750" loading="lazy"></div>
- </a>
- <h3>${esc(n)} <a href="${u}" target="_blank" rel="noopener">Kunjungi situs</a></h3>
- <p>${esc(d)}</p>
- <ul class="tags">${t.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
-</article>`}).join("");
-document.getElementById("y").textContent=new Date().getFullYear();
+const host=u=>u.replace(/^https:\/\/(www\.)?/,"");
+const ext='<svg class="ext" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4 2h6v6M10 2L3 9"/></svg>';
+const media=(p,lazy)=>`<div class="media"><div class="browser"><div class="bar"><i></i><i></i><i></i><b>${host(p[5])}</b></div><img src="shots/${p[6]}.webp" alt="Tampilan desktop ${esc(p[0])}" width="1200" height="750"${lazy}></div><div class="phone"><img src="shots/m-${p[6]}.webp" alt="Tampilan ponsel ${esc(p[0])}" width="520" height="1125"${lazy}></div></div>`;
+const info=(p,id)=>`<p class="kicker">${esc(p[1])}</p><h3${id}>${esc(p[0])}</h3><p>${esc(p[4])}</p>
+ <dl class="meta"><dt>Bidang</dt><dd>${esc(p[1])}</dd><dt>Lingkup</dt><dd>${esc(p[2])}</dd><dt>Teknologi</dt><dd>${esc(p[3])}</dd></dl>
+ <a class="btn btn-line" href="${p[5]}" target="_blank" rel="noopener">Kunjungi situs ${ext}</a>`;
+
+featured.innerHTML=P.filter(p=>p[7]).map(p=>`<article class="feat">${media(p,' loading="lazy"')}<div class="info">${info(p,"")}</div></article>`).join("");
+const rest=P.filter(p=>!p[7]);
+cards.innerHTML=rest.map((p,i)=>`<button class="card" type="button" data-i="${i}" aria-haspopup="dialog">
+ <span class="thumb"><img src="shots/${p[6]}.webp" alt="" width="1200" height="750" loading="lazy"></span>
+ <span class="t"><strong>${esc(p[0])}</strong><span class="c">${esc(p[1])}</span></span>
+ <span class="d">${esc(p[2])}</span><span class="open">Lihat detail</span></button>`).join("");
+cards.addEventListener("click",e=>{const b=e.target.closest(".card");if(!b)return;const p=rest[b.dataset.i];
+ document.getElementById("dlg-body").innerHTML=media(p,"")+`<div class="info">${info(p,' id="dlg-h"')}</div>`;dlg.showModal()});
+dlg.addEventListener("click",e=>{if(e.target===dlg)dlg.close()});
+y.textContent=new Date().getFullYear();
 </script>
 </body>
 </html>
