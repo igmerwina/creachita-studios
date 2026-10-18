@@ -20,6 +20,7 @@ var m=document.querySelector('meta[name="theme-color"]');if(m)m.content=t==="dar
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..500;1,6..72,300..400&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <style>
 :root{
   --bg:#F6F7F6;
@@ -30,13 +31,15 @@ var m=document.querySelector('meta[name="theme-color"]');if(m)m.content=t==="dar
   --accent:#1F4A40;      /* buttons */
   --on-accent:#FFFFFF;
   --brass:#97783F;       /* fine detail */
+  --glow:rgba(180,146,90,.22);
+  --grain:.05;
   --band:#101A17;        /* contact + footer */
   --band-ink:#EEF0EC;
   --band-2:#9BA7A1;
   --band-line:#2A3834;
   --shadow:0 60px 90px -50px rgba(16,26,23,.45);
   --gutter:clamp(18px,5vw,64px);
-  --max:1240px;
+  --max:1280px;
   --serif:Newsreader,Georgia,serif;
   color-scheme:light;
 }
@@ -49,6 +52,8 @@ var m=document.querySelector('meta[name="theme-color"]');if(m)m.content=t==="dar
   --accent:#C9A96E;
   --on-accent:#0B1311;
   --brass:#C9A96E;
+  --glow:rgba(201,169,110,.16);
+  --grain:.08;
   --band:#0F1815;
   --band-line:#25322D;
   --shadow:0 60px 100px -40px rgba(0,0,0,.8);
@@ -65,15 +70,17 @@ button{font:inherit;color:inherit}
 .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
 .skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:var(--bg);padding:8px 14px;border-radius:6px;z-index:30}
 .skip:focus{left:8px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
 /* type */
 .serif{font-family:var(--serif);font-weight:300;letter-spacing:-.02em;font-optical-sizing:auto}
-h1.serif{font-size:clamp(2.7rem,6.2vw,5.4rem);line-height:1.02}
 h2.serif{font-size:clamp(2.2rem,4.4vw,3.6rem);line-height:1.06}
 .serif i{font-style:italic;color:var(--brass)}
-.lede{font-size:clamp(1.08rem,1.4vw,1.2rem);color:var(--ink-2);max-width:30em}
+.lede{font-size:clamp(1.05rem,1.3vw,1.15rem);color:var(--ink-2);max-width:30em}
 .kicker{font-size:.92rem;color:var(--ink-2);display:flex;align-items:center;gap:14px}
 .kicker::before{content:"";width:36px;height:1px;background:var(--brass)}
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em;margin-bottom:-.08em}
+.w>span{display:inline-block}
 
 /* buttons */
 .btn{display:inline-flex;align-items:center;gap:.6em;font-weight:500;text-decoration:none;padding:.9em 1.7em;border-radius:999px;border:1px solid var(--ink);background:none;cursor:pointer;transition:background .25s,color .25s,border-color .25s}
@@ -81,40 +88,73 @@ h2.serif{font-size:clamp(2.2rem,4.4vw,3.6rem);line-height:1.06}
 .btn-solid:hover{background:var(--ink);border-color:var(--ink);color:var(--bg)}
 .btn-line:hover{background:var(--ink);color:var(--bg)}
 .ext{width:.8em;height:.8em;flex:none}
+.round{width:46px;height:46px;flex:none;border-radius:50%;border:1px solid var(--line);background:none;cursor:pointer;display:grid;place-items:center;color:var(--ink);transition:border-color .2s,background .2s}
+.round:hover{border-color:var(--brass)}
+.round svg{grid-area:1/1;width:18px;height:18px}
 
 /* header */
 header{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid var(--line)}
 header .wrap{display:flex;align-items:center;justify-content:space-between;height:76px}
 .logo{font-family:var(--serif);font-weight:400;font-size:1.7rem;letter-spacing:-.02em;text-decoration:none}
 .logo span{color:var(--brass)}
-header nav{display:flex;align-items:center;gap:clamp(16px,2.6vw,36px);font-size:.97rem}
+header nav{display:flex;align-items:center;gap:clamp(14px,2.4vw,34px);font-size:.97rem}
 nav a{text-decoration:none}
 nav a:not(.btn){color:var(--ink-2)}
 nav a:not(.btn):hover{color:var(--ink)}
 nav .btn{padding:.62em 1.3em}
-.mode{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:none;cursor:pointer;display:grid;place-items:center;color:var(--ink);transition:border-color .2s}
-.mode:hover{border-color:var(--brass)}
-.mode svg{grid-area:1/1;width:18px;height:18px}
+header .round{width:42px;height:42px}
 .mode .sun{display:none}
 :root[data-theme=dark] .mode .sun{display:block}
 :root[data-theme=dark] .mode .moon{display:none}
 @media(max-width:700px){header nav a:not(.btn){display:none}}
 
-/* hero */
-.hero{padding:clamp(64px,10vw,140px) 0 clamp(80px,10vw,150px)}
-.hero .wrap{display:grid;grid-template-columns:1.45fr 1fr;gap:clamp(40px,7vw,120px);align-items:end}
-.hero h1{margin-top:28px}
-.hero .lede{margin-top:32px}
-.ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:44px}
-.hero .wrap>*{animation:rise .9s cubic-bezier(.2,.75,.2,1) backwards}
-.hero .wrap>*:nth-child(2){animation-delay:.15s}
-@keyframes rise{from{opacity:0;transform:translateY(28px)}}
-.index p{font-size:.92rem;color:var(--ink-2);padding-bottom:14px;border-bottom:1px solid var(--brass)}
-.index a{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:20px 0;border-bottom:1px solid var(--line);text-decoration:none;transition:padding .3s,color .3s}
-.index a strong{font-family:var(--serif);font-weight:400;font-size:1.55rem;letter-spacing:-.01em}
-.index a span{color:var(--ink-2);font-size:.92rem}
-.index a:hover{padding-left:10px;color:var(--brass)}
-@media(max-width:900px){.hero .wrap{grid-template-columns:1fr}}
+/* showcase: intro + portfolio slider */
+.show{position:relative;overflow:hidden;padding:clamp(36px,4.5vw,64px) 0 clamp(64px,8vw,104px);isolation:isolate}
+.show::before{content:"";position:absolute;inset:-20% -10% auto auto;width:70vw;height:70vw;max-width:1100px;max-height:1100px;border-radius:50%;background:radial-gradient(closest-side,var(--glow),transparent);z-index:-1;animation:drift 22s ease-in-out infinite alternate}
+.show::after{content:"";position:absolute;inset:0;z-index:-1;opacity:var(--grain);pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+@keyframes drift{to{transform:translate(-22vw,26vh) scale(1.15)}}
+.intro{display:grid;grid-template-columns:1.7fr 1fr;gap:24px clamp(40px,6vw,96px);align-items:end}
+.intro h1{font-size:clamp(2.3rem,4.2vw,3.7rem);line-height:1.05;margin-top:18px;max-width:17ch}
+.intro .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+@media(max-width:900px){.intro{grid-template-columns:1fr}}
+
+.slider{margin-top:clamp(36px,4.5vw,64px);scroll-margin-top:96px}
+.stage{display:grid;grid-template-columns:1.6fr 1fr;gap:clamp(28px,4vw,64px);align-items:center}
+.frames{position:relative;display:grid;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:var(--surface);box-shadow:var(--shadow);touch-action:pan-y;cursor:grab}
+.frames:active{cursor:grabbing}
+.slide{grid-area:1/1;display:block;text-decoration:none;visibility:hidden;opacity:0}
+.frames>.slide.on{visibility:visible;opacity:1}
+.bar{height:34px;display:flex;align-items:center;gap:7px;padding:0 16px;border-bottom:1px solid var(--line);background:color-mix(in srgb,var(--surface) 70%,var(--bg))}
+.bar i{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.bar b{flex:1;text-align:center;font-weight:400;font-size:.78rem;color:var(--ink-2);margin-right:42px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.slide img{aspect-ratio:16/10;object-fit:cover;object-position:top;width:100%;-webkit-user-drag:none;user-select:none}
+.sweep{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:0;background:linear-gradient(105deg,transparent 35%,rgba(201,169,110,.35) 50%,transparent 65%);mix-blend-mode:screen}
+:root:not([data-theme=dark]) .sweep{mix-blend-mode:normal;background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.55) 50%,transparent 62%)}
+
+.infos{display:grid}
+.info{grid-area:1/1;visibility:hidden;opacity:0}
+.infos>.info.on{visibility:visible;opacity:1}
+.info .field{color:var(--brass);font-size:.95rem}
+.info h2{font-family:var(--serif);font-weight:300;font-size:clamp(2.2rem,4vw,3.4rem);line-height:1.04;letter-spacing:-.02em;margin-top:10px}
+.info p.d{color:var(--ink-2);margin-top:18px;max-width:28em}
+.meta{display:grid;grid-template-columns:auto 1fr;gap:6px 20px;font-size:.92rem;margin:24px 0 28px;padding-top:20px;border-top:1px solid var(--line)}
+.meta dt{color:var(--ink-2)}
+
+.controls{display:flex;align-items:center;gap:clamp(16px,3vw,40px);margin-top:clamp(28px,3.4vw,44px)}
+.tabs{flex:1;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:4px 24px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 24px,#000 calc(100% - 24px),transparent);mask-image:linear-gradient(90deg,transparent,#000 24px,#000 calc(100% - 24px),transparent)}
+.tabs::-webkit-scrollbar{display:none}
+.tab{all:unset;cursor:pointer;flex:1 0 104px;padding:12px 0 0;font-size:.86rem;color:var(--ink-2);white-space:nowrap;position:relative;transition:color .2s}
+.tab::before,.tab .fill{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:var(--line)}
+.tab .fill{background:var(--brass);transform:scaleX(0);transform-origin:left}
+.tab:hover,.tab[aria-current=true]{color:var(--ink)}
+.tab:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.count{font-family:var(--serif);font-size:1.15rem;color:var(--ink-2);font-variant-numeric:tabular-nums;white-space:nowrap}
+.count b{font-weight:400;color:var(--ink)}
+.btns{display:flex;gap:8px}
+.play .p1{display:none}
+.play[aria-pressed=false] .p1{display:block}
+.play[aria-pressed=false] .p0{display:none}
+@media(max-width:900px){.slider{display:flex;flex-direction:column}.stage{display:contents}.frames{order:1}.controls{order:2;margin-top:20px;flex-wrap:wrap}.tabs{flex-basis:100%;order:2}.infos{order:3;margin-top:32px}}
 
 /* section shell */
 .sec{padding:clamp(88px,11vw,160px) 0;scroll-margin-top:76px}
@@ -122,59 +162,7 @@ nav .btn{padding:.62em 1.3em}
 .sec-head h2{margin-top:18px}
 .sec-head p{color:var(--ink-2);max-width:30em}
 @media(max-width:800px){.sec-head{grid-template-columns:1fr}}
-
-/* featured */
-.work{background:var(--surface);border-block:1px solid var(--line)}
-.feat{scroll-margin-top:100px}
-.feat+.feat{margin-top:clamp(96px,12vw,176px)}
-.shot{display:block;text-decoration:none}
-.browser{background:var(--surface);border-radius:12px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);transition:transform .7s cubic-bezier(.2,.75,.2,1)}
-.shot:hover .browser{transform:translateY(-6px)}
-.bar{height:34px;display:flex;align-items:center;gap:7px;padding:0 16px;border-bottom:1px solid var(--line);background:color-mix(in srgb,var(--surface) 70%,var(--bg))}
-.bar i{width:9px;height:9px;border-radius:50%;background:var(--line)}
-.bar b{flex:1;text-align:center;font-weight:400;font-size:.78rem;color:var(--ink-2);margin-right:42px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.browser img{aspect-ratio:16/10;object-fit:cover;object-position:top;width:100%}
-.cap{display:grid;grid-template-columns:5fr 4fr 3fr;gap:20px clamp(28px,4vw,64px);margin-top:44px;padding-top:32px;border-top:1px solid var(--line)}
-.cap h3{font-family:var(--serif);font-weight:300;font-size:clamp(2rem,3.4vw,2.8rem);line-height:1.05;letter-spacing:-.02em}
-.cap .field{color:var(--brass);font-size:.95rem;margin-top:8px}
-.cap p{color:var(--ink-2)}
-.meta{display:grid;grid-template-columns:auto 1fr;gap:6px 20px;font-size:.92rem;margin-bottom:24px}
-.meta dt{color:var(--ink-2)}
-@media(max-width:900px){.cap{grid-template-columns:1fr}}
-
-/* more work */
-.more-head{margin:clamp(110px,13vw,190px) 0 40px;padding-top:32px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px 20px}
-.more-head h3{font-family:var(--serif);font-weight:300;font-size:clamp(1.8rem,3vw,2.4rem);letter-spacing:-.02em}
-.more-head p{color:var(--ink-2);font-size:.95rem}
-.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(40px,5vw,64px) clamp(24px,3.4vw,48px)}
-.card{all:unset;display:block;cursor:pointer;border-radius:12px}
-.card:focus-visible{outline:2px solid var(--accent);outline-offset:8px}
-.card .thumb{display:block;border-radius:12px;overflow:hidden;background:var(--bg);border:1px solid var(--line);aspect-ratio:16/10}
-.card .thumb img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .8s cubic-bezier(.2,.75,.2,1)}
-.card:hover .thumb img,.card:focus-visible .thumb img{transform:scale(1.04)}
-.card .t{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-top:22px}
-.card strong{font-family:var(--serif);font-weight:300;font-size:1.7rem;letter-spacing:-.015em}
-.card .c{color:var(--brass);font-size:.92rem;white-space:nowrap}
-.card .d{display:block;color:var(--ink-2);font-size:.97rem;margin-top:2px}
-.card .open{display:inline-block;margin-top:12px;font-size:.92rem;font-weight:500;text-decoration:underline;text-underline-offset:5px;text-decoration-color:var(--brass)}
-@media(max-width:700px){.cards{grid-template-columns:1fr}}
-
-/* dialog */
-dialog{margin:auto;border:0;padding:0;border-radius:16px;width:min(1080px,calc(100% - 32px));max-height:calc(100% - 32px);color:var(--ink);background:var(--surface);box-shadow:0 40px 120px -30px rgba(0,0,0,.6);border:1px solid var(--line)}
-dialog::backdrop{background:rgba(6,12,10,.7);backdrop-filter:blur(5px)}
-dialog[open]{animation:pop .3s ease-out}
-@keyframes pop{from{opacity:0;transform:translateY(14px)}}
-.dlg{display:grid;grid-template-columns:1.6fr 1fr}
-.dlg .media{background:var(--bg);padding:clamp(20px,3vw,44px);display:flex;align-items:center}
-.dlg .media .browser{width:100%;box-shadow:0 30px 60px -36px rgba(0,0,0,.5)}
-.dlg .info{padding:clamp(28px,3.4vw,48px);display:flex;flex-direction:column}
-.dlg h3{font-family:var(--serif);font-weight:300;font-size:2.3rem;line-height:1.05;letter-spacing:-.02em}
-.dlg .field{color:var(--brass);margin-top:8px}
-.dlg .info p{color:var(--ink-2);margin:20px 0 24px}
-.dlg .btn{align-self:flex-start;margin-top:auto}
-.x{position:absolute;top:14px;right:14px;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--surface);cursor:pointer;display:grid;place-items:center;z-index:2}
-.x:hover{border-color:var(--brass)}
-@media(max-width:760px){.dlg{grid-template-columns:1fr}.dlg .btn{margin-top:0}.dlg .info{padding-top:28px}}
+#layanan{background:var(--surface);border-block:1px solid var(--line)}
 
 /* services */
 .svc{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--brass)}
@@ -186,7 +174,6 @@ dialog[open]{animation:pop .3s ease-out}
 @media(max-width:700px){.svc{grid-template-columns:1fr}.svc div:nth-child(n){padding-left:0;padding-right:0;border-left:0}}
 
 /* process */
-.process{padding-top:0}
 .steps{list-style:none;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(28px,3.4vw,48px);counter-reset:s}
 .steps li{counter-increment:s}
 .steps li::before{content:"0" counter(s);display:block;font-family:var(--serif);font-style:italic;font-size:1.25rem;color:var(--brass);padding-bottom:16px;margin-bottom:22px;border-bottom:1px solid var(--line)}
@@ -218,16 +205,16 @@ footer a:hover{color:#fff}
 </style>
 </head>
 <body>
-<a class="skip" href="#portofolio">Lewati ke portofolio</a>
+<a class="skip" href="#karya">Lewati ke portofolio</a>
 
 <header>
   <div class="wrap">
     <a class="logo" href="#" aria-label="Creachita, kembali ke atas">Creachita<span>.</span></a>
     <nav aria-label="Utama">
-      <a href="#portofolio">Portofolio</a>
+      <a href="#karya">Portofolio</a>
       <a href="#layanan">Layanan</a>
       <a href="#proses">Proses</a>
-      <button class="mode" id="mode" type="button" aria-label="Mode gelap" aria-pressed="false">
+      <button class="round mode" id="mode" type="button" aria-label="Mode gelap" aria-pressed="false">
         <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>
         <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
       </button>
@@ -237,37 +224,39 @@ footer a:hover{color:#fff}
 </header>
 
 <main>
-<section class="hero">
+<section class="show" aria-labelledby="hero-h">
   <div class="wrap">
-    <div>
-      <p class="kicker">Studio desain &amp; pengembangan web</p>
-      <h1 class="serif">Situs web yang membuat bisnis Anda <i>tampil meyakinkan.</i></h1>
-      <p class="lede">Kami merancang dan membangun situs perusahaan, toko online, dan aplikasi web yang rapi, cepat, dan mudah dikelola — dari konsep sampai live di domain Anda.</p>
-      <div class="ctas">
-        <a class="btn btn-solid" href="#kontak">Diskusikan proyek</a>
-        <a class="btn btn-line" href="#portofolio">Lihat portofolio</a>
+    <div class="intro">
+      <div>
+        <p class="kicker">Studio desain &amp; pengembangan web</p>
+        <h1 class="serif" id="hero-h">Situs web yang membuat bisnis Anda <i>tampil meyakinkan.</i></h1>
+      </div>
+      <div class="intro-r">
+        <p class="lede">Kami merancang dan membangun situs perusahaan, toko online, dan aplikasi web yang rapi, cepat, dan mudah dikelola. Geser untuk melihat karya kami yang sudah live.</p>
+        <div class="ctas">
+          <a class="btn btn-solid" href="#kontak">Diskusikan proyek</a>
+          <a class="btn btn-line" href="#layanan">Lihat layanan</a>
+        </div>
       </div>
     </div>
-    <div class="index" id="index"></div>
-  </div>
-</section>
 
-<section class="sec work" id="portofolio" aria-labelledby="porto-h">
-  <div class="wrap">
-    <div class="sec-head">
-      <div><p class="kicker">Portofolio</p><h2 class="serif" id="porto-h">Proyek pilihan</h2></div>
-      <p>Setiap proyek di bawah ini sudah live dan bisa Anda kunjungi langsung.</p>
+    <div class="slider" id="karya" role="region" aria-roledescription="carousel" aria-label="Portofolio">
+      <div class="stage">
+        <div class="frames" id="deck"><span class="sweep" id="sweep" aria-hidden="true"></span></div>
+        <div class="infos" id="infos" aria-live="off"></div>
+      </div>
+      <div class="controls">
+        <p class="count" aria-hidden="true"><b id="num">01</b> / <span id="tot">08</span></p>
+        <div class="tabs" id="tabs" aria-label="Pilih proyek"></div>
+        <div class="btns">
+          <button class="round" id="prev" type="button" aria-label="Proyek sebelumnya"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <button class="round play" id="play" type="button" aria-label="Jeda pergantian otomatis" aria-pressed="true"><svg class="p0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="7" y="6" width="3" height="12" rx="1"/><rect x="14" y="6" width="3" height="12" rx="1"/></svg><svg class="p1" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></button>
+          <button class="round" id="next" type="button" aria-label="Proyek berikutnya"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
     </div>
-    <div id="featured"></div>
-    <div class="more-head"><h3>Proyek lainnya</h3><p>Pilih proyek untuk melihat detail</p></div>
-    <div class="cards" id="cards"></div>
   </div>
 </section>
-
-<dialog id="dlg" aria-labelledby="dlg-h">
-  <button class="x" type="button" aria-label="Tutup" onclick="dlg.close()"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 3l10 10M13 3L3 13"/></svg></button>
-  <div class="dlg" id="dlg-body"></div>
-</dialog>
 
 <section class="sec" id="layanan" aria-labelledby="layanan-h">
   <div class="wrap">
@@ -284,7 +273,7 @@ footer a:hover{color:#fff}
   </div>
 </section>
 
-<section class="sec process" id="proses" aria-labelledby="proses-h">
+<section class="sec" id="proses" aria-labelledby="proses-h">
   <div class="wrap">
     <div class="sec-head">
       <div><p class="kicker">Proses</p><h2 class="serif" id="proses-h">Dari konsep ke live</h2></div>
@@ -318,40 +307,93 @@ footer a:hover{color:#fff}
 <footer class="band">
   <div class="wrap">
     <span>© <span id="y">2026</span> Creachita. Studio desain &amp; pengembangan web.</span>
-    <nav aria-label="Footer"><a href="#portofolio">Portofolio</a><a href="#layanan">Layanan</a><a href="#kontak">Kontak</a></nav>
+    <nav aria-label="Footer"><a href="#karya">Portofolio</a><a href="#layanan">Layanan</a><a href="#kontak">Kontak</a></nav>
   </div>
 </footer>
 
 <script>
-// [name, field, scope, stack, description, url, shot, featured] — order here is display order
+// [name, field, scope, stack, description, url, shot] — order here is slide order
 const P=[
- ["Citra Medika","Kesehatan","Situs profil bisnis","Next.js","Situs apotek dan praktik dokter spesialis penyakit dalam di Mataram. Pengunjung langsung menemukan jam buka, layanan, lokasi, dan tombol chat WhatsApp.","https://www.citramedika.net","citramedika",1],
- ["Melati","Pernikahan","Produk digital","Next.js","Undangan pernikahan digital dengan RSVP, amplop digital, galeri, dan QR check-in tamu. Siap dibagikan lewat WhatsApp.","https://webinv-six.vercel.app","webinv",1],
- ["SIGAP Pegadaian","Keuangan","Aplikasi internal","Next.js","Sistem Informasi Gerakan Anti Pemalsuan. Deteksi sekali, peringatkan sekitar, cegah di mana saja. Akses lewat login pegawai.","https://sigap-pegadaian.vercel.app","sigap",1],
+ ["Citra Medika","Kesehatan","Situs profil bisnis","Next.js","Situs apotek dan praktik dokter spesialis penyakit dalam di Mataram. Pengunjung langsung menemukan jam buka, layanan, lokasi, dan tombol chat WhatsApp.","https://www.citramedika.net","citramedika"],
+ ["Melati","Pernikahan","Produk digital","Next.js","Undangan pernikahan digital dengan RSVP, amplop digital, galeri, dan QR check-in tamu. Siap dibagikan lewat WhatsApp.","https://webinv-six.vercel.app","webinv"],
+ ["SIGAP Pegadaian","Keuangan","Aplikasi internal","Next.js","Sistem Informasi Gerakan Anti Pemalsuan. Deteksi sekali, peringatkan sekitar, cegah di mana saja. Akses lewat login pegawai.","https://sigap-pegadaian.vercel.app","sigap"],
+ ["Gold Insight","Investasi emas","Aplikasi web","Vite","Portofolio emas digital by Pegadaian. Catat aset emas dan lihat potensi keuntungannya dengan mudah dan praktis.","https://goldins.vercel.app","goldins"],
  ["Makan Angin","Kuliner","Katalog interaktif","Next.js","Katalog 217 hidangan dari 38 provinsi dengan alur pesan ala aplikasi ojek online. Yang datang bukan makanan, tapi resepnya.","https://makanangin.vercel.app","makanangin"],
  ["Sealed","Hadiah","Landing page produk","Next.js","Halaman hadiah personal berisi foto, pesan, dan musik, dikirim sebagai tautan pribadi atau kode QR.","https://giftygen.vercel.app","giftygen"],
  ["ImUpScaller","Percetakan","Alat berbasis browser","Vite","Menyiapkan foto untuk dicetak di 300 DPI dengan 8 ukuran standar. Semua diproses di browser, tidak ada file yang diunggah.","https://image-upscaller.vercel.app","upscaller"],
  ["Blockchain demo","Edukasi","Simulasi interaktif","Web statis","Simulasi alur e-money di blockchain — wallet, transaksi, mining, dan blok — untuk presentasi edukasi.","https://blockchain-demo-theta.vercel.app","blockchain"]
 ];
+const N=P.length, DUR=7, RM=matchMedia("(prefers-reduced-motion: reduce)").matches;
 const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const host=u=>u.replace(/^https:\/\/(www\.)?/,"");
+const pad=n=>String(n).padStart(2,"0");
+const words=s=>s.split(" ").map(w=>`<span class="w"><span>${esc(w)}</span></span>`).join(" ");
 const ext='<svg class="ext" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4 2h6v6M10 2L3 9"/></svg>';
-const shot=(p,lazy,tag="a")=>`<${tag} class="browser"><div class="bar"><i></i><i></i><i></i><b>${host(p[5])}</b></div><img src="shots/${p[6]}.webp" alt="Tampilan beranda ${esc(p[0])}" width="1800" height="1125"${lazy}></${tag}>`;
-const meta=p=>`<dl class="meta"><dt>Lingkup</dt><dd>${esc(p[2])}</dd><dt>Teknologi</dt><dd>${esc(p[3])}</dd></dl>`;
-const visit=p=>`<a class="btn btn-line" href="${p[5]}" target="_blank" rel="noopener">Kunjungi situs ${ext}</a>`;
-const feat=P.filter(p=>p[7]), rest=P.filter(p=>!p[7]);
 
-index.innerHTML='<p>Karya pilihan</p>'+feat.map(p=>`<a href="#p-${p[6]}"><strong>${esc(p[0])}</strong><span>${esc(p[1])}</span></a>`).join("");
-featured.innerHTML=feat.map(p=>`<article class="feat" id="p-${p[6]}">
- <a class="shot" href="${p[5]}" target="_blank" rel="noopener" aria-label="Buka ${esc(p[0])} di tab baru">${shot(p,' loading="lazy"',"div")}</a>
- <div class="cap"><div><h3>${esc(p[0])}</h3><p class="field">${esc(p[1])}</p></div><p>${esc(p[4])}</p><div>${meta(p)}${visit(p)}</div></div></article>`).join("");
-cards.innerHTML=rest.map((p,i)=>`<button class="card" type="button" data-i="${i}" aria-haspopup="dialog">
- <span class="thumb"><img src="shots/${p[6]}.webp" alt="" width="1200" height="750" loading="lazy"></span>
- <span class="t"><strong>${esc(p[0])}</strong><span class="c">${esc(p[1])}</span></span>
- <span class="d">${esc(p[2])}</span><span class="open">Lihat detail</span></button>`).join("");
-cards.addEventListener("click",e=>{const b=e.target.closest(".card");if(!b)return;const p=rest[b.dataset.i];
- document.getElementById("dlg-body").innerHTML=`<div class="media">${shot(p,"","div")}</div><div class="info"><h3 id="dlg-h">${esc(p[0])}</h3><p class="field">${esc(p[1])}</p><p>${esc(p[4])}</p>${meta(p)}${visit(p)}</div>`;dlg.showModal()});
-dlg.addEventListener("click",e=>{if(e.target===dlg)dlg.close()});
+deck.insertAdjacentHTML("afterbegin",P.map((p,i)=>`<a class="slide" href="${p[5]}" target="_blank" rel="noopener" draggable="false" aria-label="Buka ${esc(p[0])} di tab baru">
+ <div class="bar"><i></i><i></i><i></i><b>${host(p[5])}</b></div>
+ <img src="shots/${p[6]}.webp" alt="Tampilan beranda ${esc(p[0])}" width="1600" height="1000"${i?' loading="lazy"':' fetchpriority="high"'} draggable="false"></a>`).join(""));
+infos.innerHTML=P.map((p,i)=>`<article class="info" role="group" aria-roledescription="slide" aria-label="${i+1} dari ${N}">
+ <p class="field rise">${esc(p[1])}</p><h2>${words(p[0])}</h2><p class="d rise">${esc(p[4])}</p>
+ <dl class="meta rise"><dt>Lingkup</dt><dd>${esc(p[2])}</dd><dt>Teknologi</dt><dd>${esc(p[3])}</dd></dl>
+ <a class="btn btn-line rise" href="${p[5]}" target="_blank" rel="noopener">Kunjungi situs ${ext}</a></article>`).join("");
+tabs.innerHTML=P.map((p,i)=>`<button class="tab" type="button" data-i="${i}"><span class="fill"></span>${esc(p[0])}</button>`).join("");
+tot.textContent=pad(N);
+
+const S=[...deck.querySelectorAll(".slide")], I=[...infos.children], T=[...tabs.children];
+let cur=0, playing=!RM, held=false, tl, prog;
+
+function mark(n){
+  S.forEach((s,i)=>{s.classList.toggle("on",i===n);s.inert=i!==n});
+  I.forEach((s,i)=>{s.classList.toggle("on",i===n);s.inert=i!==n});
+  T.forEach((t,i)=>t.setAttribute("aria-current",i===n));
+  num.textContent=pad(n+1);
+  const t=T[n];tabs.scrollTo({left:t.offsetLeft-tabs.clientWidth/2+t.offsetWidth/2,behavior:RM?"auto":"smooth"});
+}
+function timer(){
+  prog&&prog.kill();
+  T.forEach(t=>t.firstChild.style.transform="scaleX(0)");
+  if(!window.gsap)return;
+  prog=gsap.fromTo(T[cur].firstChild,{scaleX:0},{scaleX:1,duration:DUR,ease:"none",paused:!playing||held,onComplete:()=>go(cur+1,1)});
+}
+function go(n,dir){
+  n=(n+N)%N; if(n===cur)return;
+  dir=dir||(n>cur?1:-1);
+  tl&&tl.progress(1);
+  const a=S[cur],b=S[n],ia=I[cur],ib=I[n];
+  cur=n; mark(n);
+  // keep the outgoing slide visible while it animates out
+  a.classList.add("on");ia.classList.add("on");
+  const done=()=>{a.classList.remove("on");ia.classList.remove("on");window.gsap&&gsap.set([a,b,ia,ib,...ib.querySelectorAll(".w>span,.rise")],{clearProps:"all"})};
+  timer();
+  if(!window.gsap||RM)return done();
+  // camera push with directional blur, a light sweep, then the words rise in
+  tl=gsap.timeline({onComplete:done})
+   .to(a,{xPercent:-dir*12,autoAlpha:0,filter:"blur(10px)",duration:.55,ease:"power3.in"},0)
+   .fromTo(b,{xPercent:dir*14,scale:1.06,autoAlpha:0,filter:"blur(16px)"},{xPercent:0,scale:1,autoAlpha:1,filter:"blur(0px)",duration:1.05,ease:"expo.out"},.3)
+   .fromTo(sweep,{xPercent:-110,opacity:1},{xPercent:110,duration:1.2,ease:"power2.inOut"},.25)
+   .to(ia,{autoAlpha:0,y:-18,filter:"blur(6px)",duration:.4,ease:"power2.in"},0)
+   .fromTo(ib.querySelectorAll(".w>span"),{yPercent:110,filter:"blur(6px)"},{yPercent:0,filter:"blur(0px)",duration:.85,ease:"expo.out",stagger:.07},.42)
+   .fromTo(ib.querySelectorAll(".rise"),{y:20,autoAlpha:0},{y:0,autoAlpha:1,duration:.75,ease:"power3.out",stagger:.07},.55);
+}
+function hold(v){held=v;if(prog)v||!playing?prog.pause():prog.resume()}
+
+prev.onclick=()=>go(cur-1,-1);
+next.onclick=()=>go(cur+1,1);
+tabs.onclick=e=>{const t=e.target.closest(".tab");if(t)go(+t.dataset.i)};
+play.onclick=()=>{playing=!playing;play.setAttribute("aria-pressed",playing);play.setAttribute("aria-label",playing?"Jeda pergantian otomatis":"Putar pergantian otomatis");hold(held)};
+karya.addEventListener("keydown",e=>{if(e.key==="ArrowRight")go(cur+1,1);if(e.key==="ArrowLeft")go(cur-1,-1)});
+karya.addEventListener("mouseenter",()=>hold(true));
+karya.addEventListener("mouseleave",()=>hold(false));
+karya.addEventListener("focusin",()=>{hold(true);infos.setAttribute("aria-live","polite")});
+karya.addEventListener("focusout",e=>{if(!karya.contains(e.relatedTarget))hold(false)});
+// swipe: a drag past 50px changes slide and cancels the link click
+let x0=null,dragged=false;
+deck.addEventListener("pointerdown",e=>{x0=e.clientX;dragged=false});
+deck.addEventListener("pointerup",e=>{if(x0===null)return;const dx=e.clientX-x0;x0=null;if(Math.abs(dx)>50){dragged=true;go(cur+(dx<0?1:-1),dx<0?1:-1)}});
+deck.addEventListener("click",e=>{if(dragged){e.preventDefault();dragged=false}},true);
+if(RM){playing=false;play.setAttribute("aria-pressed",false);play.setAttribute("aria-label","Putar pergantian otomatis")}
+mark(0);
 
 // theme toggle
 const root=document.documentElement;
@@ -359,6 +401,22 @@ const sync=()=>{const d=root.dataset.theme==="dark";mode.setAttribute("aria-pres
 mode.addEventListener("click",()=>{const t=root.dataset.theme==="dark"?"light":"dark";root.dataset.theme=t;try{localStorage.setItem("theme",t)}catch(e){}sync()});
 sync();
 y.textContent=new Date().getFullYear();
+
+// one orchestrated entrance once GSAP is ready; page stays fully usable without it
+addEventListener("DOMContentLoaded",()=>{
+  if(!window.gsap)return;
+  timer();
+  if(RM)return;
+  const h=document.querySelector(".intro h1");
+  h.innerHTML=h.innerHTML.replace(/(<i>)?([^<\s]+)(<\/i>)?/g,(m,o,w,c)=>(o||"")+`<span class="w"><span>${w}</span></span>`+(c||""));
+  gsap.timeline()
+   .from(".intro h1 .w>span",{yPercent:110,filter:"blur(8px)",duration:1,ease:"expo.out",stagger:.05})
+   .from([".intro .kicker",".intro-r"],{y:24,autoAlpha:0,duration:.8,ease:"power3.out",stagger:.1},.2)
+   .from(".frames",{y:60,scale:.96,autoAlpha:0,filter:"blur(12px)",duration:1.2,ease:"expo.out"},.35)
+   .fromTo(sweep,{xPercent:-110,opacity:1},{xPercent:110,duration:1.4,ease:"power2.inOut"},.9)
+   .from(I[0].querySelectorAll(".w>span"),{yPercent:110,duration:.9,ease:"expo.out",stagger:.07},.6)
+   .from([...I[0].querySelectorAll(".rise"),".controls"],{y:20,autoAlpha:0,duration:.7,ease:"power3.out",stagger:.07},.75);
+});
 </script>
 </body>
 </html>
